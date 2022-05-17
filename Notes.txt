@@ -1,0 +1,48 @@
+Approach:
+	Open using CSV library
+	Identify the floor plan column by searching for header with "unit type"/variations
+	Move unit type to column 0
+	Sort all rows by unit type in alphebetical order
+	Loop through each unit type and remove all but the lowest price
+		Use two pointers
+			while pointer 2 is not "" iterate pointer 2:
+				if pointer 2 == pointer 1:
+
+					if pointer 1 <= pointer 2:
+						delete row 2
+					else:
+						delete row 1
+						pointer 1 = pointer 2
+				else:
+					pointer 1 = pointer 2
+	Remove all extraneous columns
+	
+
+
+Input:
+	CSV table with miscellaneous data
+
+Output:
+	CSV data with extraneous data removed and remaining data formatted
+		Remaining Data:
+			Floor plan (Ex: A1)
+			Price
+			Sq Footage
+			Unit type (Ex: 1 br)
+			Unit type name (1x1)
+		Remove:
+			Duplicates
+			Categories not shown above
+			
+Edge cases:
+	Necessary data may not be included
+	Column headers for the same data type may be slightly different
+	Lowest price for each floor plan should be returned
+
+Assumptions:
+	Floor plan should be in column #1
+	Order of returned data does not matter
+	Columns are not always in the same order
+	Column names are not always exactly the same
+	
+	
