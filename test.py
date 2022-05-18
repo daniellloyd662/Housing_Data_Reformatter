@@ -10,17 +10,17 @@ firstcolumn='unit type name'
 #price specifies which column will be checked for lowest possible rent
 price = "max rent"
 
-#Specifies the name of the folder where reformatted csv files will be stored
-foldername = 'Reformatted'
-
 #Columns containing these keywords will be copied into the reformatted csv file if they are not empty, all other columns will be deleted
 #Leave, 'firstcolumn' and price variables, all other strings can be modified, added, or removed
 
-keywords = [price, firstcolumn,'unit', 'rent', 'price', 'sq', 'floor']
-#====================================================================================================================================================
+keywords = ['unit', 'rent', 'price', 'sq', 'floor']
+
+#===================================================================================================================================================
 
 
-
+keywords.extend([price, firstcolumn])
+#Specifies the name of the folder where reformatted csv files will be stored
+foldername = 'Reformatted'
 #=========================================
 #Reformat passed in file
 def Reformat(filename):
