@@ -1,7 +1,6 @@
-unit type name,unit number,unit status,max rent,floorplan name
-1x1,100.0,Vacant Unrented Ready,506.0,1x1
-1x2,,,1302.0,1x1
-2x2,206.0,Occupied No Notice,513.0,2x2
-3x3,607.0,Vacant Unrented Ready,509.0,3x3
-4x4,809.0,Occupied No Notice,571.0,4x4
-Studio,706.0,Occupied No Notice,601.0,Studio
+floorplan name,unit number,max rent,square footage,unit status,unit type name
+1x1,203.0,530.0,1000.0,Occupied No Notice,1x1
+2x2,804.0,552.0,1500.0,Occupied No Notice,2x2
+3x3,903.0,511.0,2000.0,Vacant Unrented Ready,3x3
+4x4,509.0,503.0,2500.0,Occupied No Notice,4x4
+Studio,709.0,686.0,500.0,Occupied No Notice,Studio

@@ -2,11 +2,26 @@ import pandas
 import numpy as np
 import os
 
+#==========================================User Editable variables: Make changes here to affect script performance===================================
 
-firstcolumn="unit type name"
+#Firstcolumn specifies whatever column will be at index 0
+firstcolumn='unit type name'
+
+#price specifies which column will be checked for lowest possible rent
 price = "max rent"
+
+#Specifies the name of the folder where reformatted csv files will be stored
 foldername = 'Reformatted'
 
+#Columns containing these keywords will be copied into the reformatted csv file if they are not empty, all other columns will be deleted
+#Leave, 'firstcolumn' and price variables, all other strings can be modified, added, or removed
+
+keywords = [price, firstcolumn,'unit', 'rent', 'price', 'sq', 'floor']
+#====================================================================================================================================================
+
+
+
+#=========================================
 #Reformat passed in file
 def Reformat(filename):
     #Open data with pandas library
@@ -25,16 +40,19 @@ def Reformat(filename):
     df.dropna(how='all', axis=1,inplace=True)
 
     #Specify which keywords a column must contain to not be deleted
-    keywords = ['unit', 'rent', 'price' 'sq', 'floor']
+    #keywords = ['unit', 'rent', 'price' 'sq', 'floor']
 
     #Filter all column headers containing a keyword string
     def filterkeywords(words):
-        returnedcolumns = []
+        returnedcolumns = set([])
+        #print(df.columns)
         for word in keywords:
-            returnedcolumns.extend(list(df.filter(like= word).columns))
+            collist = list(df.filter(like= word).columns)
+            returnedcolumns.update(collist)
         return returnedcolumns
+    
     columns = filterkeywords(keywords)
-
+    #print(columns)
     #Filter for only columns containing keywords (saved as a list in the columns variable)
     df = df[columns]
 
@@ -48,15 +66,11 @@ def Reformat(filename):
         dffiltered = df[dfmask]
         if len(dffiltered[[price]])>0:
             minimumids.append(dffiltered[[price]].idxmin()[0])
-            # print(dffiltered[[price]].idxmin())
-    print(minimumids)
+
 
     df = df.filter(items = minimumids, axis=0)
-    print(df)
     #Save to new csv file
     df.to_csv("./"+foldername+"/"+filename, sep=',', index=False)
-
-
 
 def createPath(folder):
     path = "./" + foldername
